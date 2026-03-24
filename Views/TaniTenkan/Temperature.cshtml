@@ -1,0 +1,39 @@
+@model taniTenkan.Models.Conversion
+
+@{
+    ViewData["Title"] = "Temperature Conversion";
+}
+
+<h2>Temperature Conversion</h2>
+
+<form asp-action="Convert" method="post">
+    <input type="hidden" asp-for="Type" value="Temperature">
+    <div class="form-group">
+        <label asp-for="InputValue">Value</label>
+        <input asp-for="InputValue" class="form-control" type="number" step="any">
+    </div>
+    <div class="form-group">
+        <label asp-for="FromUnit">From</label>
+        <select asp-for="FromUnit" class="form-control">
+            <option value="Celsius">Celsius</option>
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ToUnit">To</label>
+        <select asp-for="ToUnit" class="form-control">
+            <option value="Celsius">Celsius</option>
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+        </select>
+    </div>
+    <br><button type="submit" class="btn btn-primary">Convert</button>
+</form>
+
+@if (Model.OutputValue.HasValue)
+{
+    <div class="alert alert-success mt-3">
+        Result: @Model.OutputValue.Value
+    </div>
+}
